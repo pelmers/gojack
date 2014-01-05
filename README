@@ -1,0 +1,23 @@
+Gojack is a simple library for running blackjack games.
+
+Typical usage:
+// Start new game with one deck (shuffled in initialization)
+game := gojack.NewGame(1)
+// Add the non-dealer players
+game.AddPlayer("player1")
+game.AddPlayer("player2")
+// Deal two cards to everyone
+game.InitialDeal()
+// Play until the game ends
+for !(game.IsEnd()) {
+    // if the player wants to take a hit
+    game.Deal(game.CurrentPlayer())
+    // call at the end of each move
+    game.IncrementMove()
+}
+// Print the state of the current game
+fmt.Println(game)
+
+Gojack also supports loading JSON-encoded input files:
+game := LoadGame(filename)
+
